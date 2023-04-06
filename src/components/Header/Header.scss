@@ -1,0 +1,23 @@
+.Header{
+    // padding: 20px;
+    background-color: rgb(255, 255, 255);
+    // margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow:
+    0 0 5px rgba(117, 32, 255, 0.7),
+    0 0 20px rgba(117, 32, 255, 0.7),
+    0 0 40px rgba(117, 32, 255, 0.7);
+    height: 100px;
+    width: 100%;
+    p{
+        font-size: 36px;
+        font-weight: bold;
+    }
+    svg{
+        width: 40px;
+    }
+    img{
+        width: 300px;
+
+    }
+}

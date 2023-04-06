@@ -1,0 +1,17 @@
+.NavBlock{
+    min-width: 200px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    // height: calc(100vh - 100px);
+    // background-color: rgb(255, 255, 255);
+    gap: 20px;
+    ul{
+        list-style-type: none;
+        align-items: center;
+        li{
+            cursor: pointer;
+        }
+      
+    }
+}

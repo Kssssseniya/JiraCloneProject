@@ -1,0 +1,258 @@
+*{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+}
+body{
+        background-color: rgb(255, 255, 255);
+        // background-color: #768be5;  
+        font-family: 'Roboto', sans-serif;      
+}
+button{
+        font-family: 'Roboto', sans-serif;       
+}
+.App{
+//       display: grid;
+//       grid-template-rows: 0.5fr 2fr;
+//       width: 100%;
+min-height: 100%;
+display: flex;
+flex-direction: column;
+justify-content: end;
+// height: 100%;
+// position: relative;
+}
+
+.Primary_Container{
+        width: 70%;
+        margin: 0 auto;
+        min-height: 600px;
+        background-color: #a4c7f5;   
+        margin-top: 50px;
+        border-radius: 15px;
+        padding: 15px 0px;
+        overflow: auto;
+}     
+.Lists_Container{
+        height: calc(100vh - 120px);
+        overflow-y: auto;
+        width: 80%;  
+        margin-top: 20px; 
+       
+        // display: inline-block;
+        //  align-self: flex-end;
+      
+        // display:inline-block;
+}  
+
+.Lists_Container::-webkit-scrollbar {
+                width: 15px;
+              }
+              
+.Lists_Container::-webkit-scrollbar-track {
+                background: #f5c9f9;
+                border-radius: 20px;
+              }
+              
+.Lists_Container::-webkit-scrollbar-thumb {
+                background-color: rgba(117, 32, 255, 0.7);
+                border-radius: 20px;
+                border: 3px solid rgba(117, 32, 255, 0.7);
+              }     
+.Btn_AddList{
+        width: 40px;
+        height: 40px;
+        border: none;
+        cursor: pointer;
+        font-size: medium;
+        background: none; 
+        // border: 3px solid #dddfe1;
+        svg{
+                width: 40px;
+                fill: rgba(117, 32, 255, 0.7);
+        }
+        svg:hover{
+                width: 45px;    
+        }
+}
+// .Btn_AddList:hover{
+//         background-color: #7fb0ef;
+// }
+.List_item{
+        min-width: 300px;
+        min-height: 100px;
+        background-color: rgb(255, 255, 255);
+        box-shadow: 5px 5px 5px 5px rgba(117, 32, 255, 0.7); 
+        border-radius: 5px ; 
+        padding: 5px;
+        display: flex; 
+        flex-direction: column; 
+        align-items: center;
+        justify-content: space-between;
+        h3{
+                padding: 20px;
+        }
+        button{
+                background: none;
+                border: none;
+                cursor: pointer;
+        }
+        svg{
+                fill: rgba(117, 32, 255, 0.7);
+                width: 35px;
+                opacity: 0;
+        }
+        svg:hover{
+                width: 40px;    
+             }
+       
+}
+.List_item:hover{
+        svg{
+           opacity: 1;    
+        }
+                
+        }
+//Form
+.Form_Container{
+        background-color: rgb(255, 255, 255);
+        box-shadow:
+        0 0 5px rgba(117, 32, 255, 0.7),
+        0 0 20px rgba(117, 32, 255, 0.7),
+        0 0 40px rgba(117, 32, 255, 0.7);
+        height: 200px;
+        width: 300px; 
+        border-radius: 15px; 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        position: absolute;
+        top: calc(50% - 200px);
+        left: calc(50% - 150px);
+        z-index: 1;
+        input{
+                height: 30px; 
+                border-radius: 15px; 
+                font-size: large;
+                text-align: center;
+                border: none; 
+                box-shadow:
+                0 0 5px rgba(117, 32, 255, 0.7),
+                0 0 7px rgba(117, 32, 255, 0.7),
+                0 0 10px rgba(117, 32, 255, 0.7);    
+        }
+        button{
+                // border: 3px solid #5f56c7;
+                background-color: none;
+                width: 100px;  
+                height: 40px;
+                font-size: large;
+                border-radius: 5px; 
+                cursor: pointer;
+        }   
+//       /
+       
+}
+
+.FormForTasks{
+        height: 250px;
+        width: 350px;
+        display: flex;
+        z-index: 1;
+        flex-direction: column; 
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        position: absolute;
+        top: calc(50% - 200px);
+        left: calc(50% - 150px);
+        background-color: rgb(255, 255, 255);
+        box-shadow:
+        0 0 5px rgba(117, 32, 255, 0.7),
+        0 0 20px rgba(117, 32, 255, 0.7),
+        0 0 40px rgba(117, 32, 255, 0.7);
+        border-radius: 15px; 
+        input{
+                height: 30px; 
+                width: 70%;
+                border-radius: 15px; 
+                font-size: large;
+                text-align: center;
+                border: none; 
+                box-shadow:
+                0 0 5px rgba(117, 32, 255, 0.7),
+                0 0 7px rgba(117, 32, 255, 0.7),
+                0 0 10px rgba(117, 32, 255, 0.7);        
+        }
+        select{
+                height: 30px; 
+                width: 70%;
+                border-radius: 15px; 
+                font-size: large;
+                text-align: center;
+                border: none; 
+                box-shadow:
+                0 0 5px rgba(117, 32, 255, 0.7),
+                0 0 7px rgba(117, 32, 255, 0.7),
+                0 0 10px rgba(117, 32, 255, 0.7);   
+        }
+        button{
+                border: 3px solid #5f56c7;
+                background-color: #7e75e4;
+                width: 100px;  
+                height: 40px;
+                font-size: large;
+                border-radius: 5px; 
+                cursor: pointer;
+        }   
+        button:hover{
+                background-color: #5f56c7;   
+        }  
+}
+.TaskItem{
+        // background-color: #948deb; 
+        // border: 3px solid #7fb0ef;
+        // border: 2px solid #918f8f86;
+        box-shadow: 5px 5px 5px 5px rgb(125, 122, 212);
+        padding: 5px 0;
+        width: 250px;  
+        min-height: 50px;
+        margin-bottom: 20px;  
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px; 
+        cursor: pointer;
+        position: relative;
+        padding: 10px;
+        h3{
+                padding: 5px;
+        }
+        button{
+                float: right;
+                margin-right: 5px;
+                background-color: #e15252;
+                width: 15px;
+                height: 15px;
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                padding: 8px;
+        }
+        
+        
+}
+.TaskItem:hover{
+                background-color: rgba(125, 122, 212, 0.251);
+        }
+.ContainerTaskItem{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 35px;
+        flex-direction: column-reverse;
+}

@@ -1,0 +1,61 @@
+.ModalTask{
+    width: 600px;
+    height: 500px;
+    position: absolute;
+    top: calc(50% - 250px);
+    left: calc(50% - 300px);
+    background-color: white;
+    box-shadow:
+    0 0 5px rgba(117, 32, 255, 0.7),
+    0 0 20px rgba(117, 32, 255, 0.7),
+    0 0 40px rgba(117, 32, 255, 0.7);
+    padding: 25px;
+    font-size: 18px;
+    z-index: 1;
+    .ModalTask_Wrapper{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        align-items: flex-start;
+        justify-content: space-between;
+        padding: 5px;
+        .Wrapper_Left{
+            // width: 50%;
+        }
+        .Wrapper_Form{
+            margin-bottom: 40px;
+            display: grid;
+            row-gap: 8px;
+            width: 100%;
+            button{
+                // text-align: start;
+                font-size: 18px;
+            }
+            button:hover{
+                background-color: rgb(216, 212, 212);
+            }
+            .ModalTask_Resume:hover, h3:hover{
+                background-color: rgb(216, 212, 212);
+                border-radius: 8px;
+            }
+        }
+        h3{
+            padding: 0;
+            
+        }
+       
+         input{
+        // border: none;
+        cursor: pointer;
+        font-size: 18px;
+        border-radius: 8px;
+        }
+      
+    }
+    
+   
+    .ModalTask_Close{
+        float: right;
+      
+    }
+}
