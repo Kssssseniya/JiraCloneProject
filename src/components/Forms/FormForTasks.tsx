@@ -23,7 +23,8 @@ const FormForTasks = ({Newitem, stateFormTask, addDispatch, closeForm}:any) =>{
             id: new Date().getTime(),
             status: valueType,
             resume: valueResume, 
-            stateModalWindow: false
+            stateModalWindow: false,
+            childItem: [],
         }
         
         setValueTutle("")
@@ -32,6 +33,11 @@ const FormForTasks = ({Newitem, stateFormTask, addDispatch, closeForm}:any) =>{
         console.log(firstType)
         addDispatch(Newitem )  
         }
+    }
+    const closeFormHandler=()=>{
+        setValueTutle("")
+        setResume("")
+        closeForm()
     }
     return(
         <>
@@ -43,7 +49,7 @@ const FormForTasks = ({Newitem, stateFormTask, addDispatch, closeForm}:any) =>{
                 {taskTypes}
             </select>
             <FlexContainer gap = '10px'>
-                <button onClick={closeForm}>Close</button>  
+                <button onClick={closeFormHandler}>Close</button>  
                 <button onClick={addNewTask}>Add Task</button>
             </FlexContainer>
          
