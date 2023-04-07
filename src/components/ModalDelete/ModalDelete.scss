@@ -10,6 +10,7 @@
     background-color: white;
     font-size: 16px;
     position: absolute;
+    
     z-index: 1;
     left: calc(50% - 175px);
     p{
@@ -17,6 +18,10 @@
     }
     button{
         font-size: 16px;
+        border: none;
+        background-color: white;
+        cursor: pointer;
+        
     }
     button:hover{
         color: rgb(117, 32, 255);

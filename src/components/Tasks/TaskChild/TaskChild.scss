@@ -1,0 +1,12 @@
+.TaskChild{
+    width: 90%;
+    height: 70px;
+    border: 2px solid rgba(117, 32, 255, 0.7);
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(117, 32, 255, 0.7), 0 0 7px rgba(117, 32, 255, 0.7), 0 0 10px rgba(117, 32, 255, 0.7); 
+    select{
+        border-radius: 8px;
+    }
+}

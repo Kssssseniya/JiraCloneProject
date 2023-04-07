@@ -1,8 +1,8 @@
 .ModalTask{
     width: 600px;
-    height: 500px;
+    height: 600px;
     position: absolute;
-    top: calc(50% - 250px);
+    top: calc(50% - 300px);
     left: calc(50% - 300px);
     background-color: white;
     box-shadow:
@@ -13,14 +13,33 @@
     font-size: 18px;
     z-index: 1;
     .ModalTask_Wrapper{
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-        align-items: flex-start;
-        justify-content: space-between;
         padding: 5px;
-        .Wrapper_Left{
-            // width: 50%;
+        .Left_TaskChilCont{
+            overflow: auto;
+            height: 180px;
+            width: 100%;
+        }
+        .Left_TaskChilCont::-webkit-scrollbar {
+            width: 15px;
+          }
+          
+        .Left_TaskChilCont::-webkit-scrollbar-track {
+            background: #f5c9f9;
+            border-radius: 20px;
+          }
+          
+        .Left_TaskChilCont::-webkit-scrollbar-thumb {
+            background-color: rgba(117, 32, 255, 0.7);
+            border-radius: 20px;
+            border: 3px solid rgba(117, 32, 255, 0.7);
+          }   
+        .Left_TaskChilCont_item{
+            width: 100%;
+            padding: 10px;
+        }
+        .select{
+            border-radius: 5px;
+            width: 200px;
         }
         .Wrapper_Form{
             margin-bottom: 40px;
@@ -28,29 +47,44 @@
             row-gap: 8px;
             width: 100%;
             button{
-                // text-align: start;
+                width: 150px;
                 font-size: 18px;
+                border: 3px solid rgba(117, 32, 255, 1);
+                padding: 3px;
+                border-radius: 5px;
+                color: rgba(117, 32, 255, 1);
+                font-weight: bold;
             }
             button:hover{
-                background-color: rgb(216, 212, 212);
+                background-color: rgb(223, 206, 253);
             }
             .ModalTask_Resume:hover, h3:hover{
                 background-color: rgb(216, 212, 212);
                 border-radius: 8px;
             }
+            select{
+                font-size: 16px;
+                cursor: pointer;
+            }
         }
+       
         h3{
             padding: 0;
             
         }
        
-         input{
-        // border: none;
+        input{
         cursor: pointer;
         font-size: 18px;
         border-radius: 8px;
         }
-      
+        select{
+            border-radius: 8px;
+            width: 100px;
+            border: 3px solid rgba(117, 32, 255, 0.762);
+            font-weight: bold;
+            outline: none;
+        }
     }
     
    
