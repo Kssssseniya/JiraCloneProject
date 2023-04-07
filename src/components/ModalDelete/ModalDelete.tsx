@@ -3,7 +3,7 @@ import { ToDoType } from '../../store/createSlice'
 import { DasksType } from '../../store/CreateSliseDask'
 import { FlexContainer } from '../../styledComponents/FlexContainer'
 interface NavBlockType{
-    list: ToDoType|DasksType
+    list: any
     deleteTask: ()=>void
     closeModalDelete: ()=>void
     stateModalDelete: boolean
