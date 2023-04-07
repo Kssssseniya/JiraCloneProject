@@ -69,8 +69,38 @@ export const todoSlice = createSlice({
         },
         deleteTask(state, {payload, type}){
             state.todos = state.todos.filter(item => item.id !== payload.id)
+        },
+        addChildTask(state, {payload, type}){
+        //    const  elem = state.todos.filter(item=>item.childItem === payload.item)
+        //    elem.filter(item=>item.id === payload.id)
+        //    elem.map(item=>item.childItem?.push(payload.newItem))
+            // console.log( state.todos.filter(item=>item.childItem==payload.item))
+           state.todos
+           .filter(item=>item.id === payload.item.id)
+           .map(item=>item.childItem?.push(payload.newItem))
+        },
+        addChildTaskForChild(state, {payload, type}){
+           
+            const elem = (a:any)=>a.childItem.forEach((j:any)=>{
+                if(j.id===payload.item.id){
+                    console.log(j.id===payload.item.id)
+                    return j.childItem?.push(payload.newItem)
+                    
+                 }else{
+                    return elem(j)
+                 }
+            })
+             state.todos
+            .map(item=>item.childItem?.forEach((x)=>{
+                    if(x.id===payload.item.id){
+                       return x.childItem?.push(payload.newItem)
+                    }else{
+                        elem(x)
+                    }
+                }))
+
         }
     }
 })
 export default todoSlice.reducer;
-export const { addTodo, changeDragTask, changeTaskDragAndDrop, ChangeTitle, ChangeResume, ChangeStatus, ChangeStateModalWindow, deleteTask} = todoSlice.actions;
+export const { addTodo, changeDragTask, changeTaskDragAndDrop, ChangeTitle, ChangeResume, ChangeStatus, ChangeStateModalWindow, deleteTask, addChildTask, addChildTaskForChild} = todoSlice.actions;

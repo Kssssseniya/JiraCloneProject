@@ -1,0 +1,23 @@
+.FormForChildTask{
+    width: 100%;
+    
+    input{
+        margin-top: 5px;
+        width: 90%; 
+        padding: 8px;
+        outline: 2px solid rgb(160, 117, 230);
+        border: none;
+    }
+    input:focus{
+        outline: 3px solid rgba(117, 32, 255, 1);
+    }
+   .FormForChildTask_Btn{
+        margin-left: 5px;
+        button{
+            font-size: 18px;
+        }
+        button:hover{
+            color: rgb(117, 32, 255);
+        }
+   }
+}

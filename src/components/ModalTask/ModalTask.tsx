@@ -4,16 +4,20 @@ import { useAppSelector, useAppDispatch } from "../../hooks/redux"
 import { todoSlice } from '../../store/createSlice';
 import React, {FC, PropsWithChildren, useState, useRef, ChangeEvent} from 'react';
 import { FlexContainer } from '../../styledComponents/FlexContainer';
+import FormForChildTask from '../Forms/FormForChildTask';
+import ModalChildTask from '../Tasks/TaskChild/TaskChild';
+import TaskChild from '../Tasks/TaskChild/TaskChild';
 interface ModalTaskType{
     list: ToDoType,
     stateModalTask: boolean,
-    onClose: ()=>void
+    onClose: ()=>void,
+    addNewChildTask: any
 }
 
-const ModalTask: FC<PropsWithChildren<ModalTaskType>> = ({list, stateModalTask, onClose})=>{
+const ModalTask: FC<PropsWithChildren<ModalTaskType>> = ({list, stateModalTask, addNewChildTask, onClose, })=>{
     const {dasks} = useAppSelector(state => state.dasks)
     // const {stateModalWindow} = useAppSelector(state => state.todos)
-    const {ChangeTitle, ChangeResume, ChangeStatus, ChangeStateModalWindow } = todoSlice.actions
+    const {ChangeTitle, ChangeResume, ChangeStatus, ChangeStateModalWindow, addChildTask } = todoSlice.actions
     const dispatch = useAppDispatch()
     const taskTypes = dasks.map((item)=><option key={item.id}  value={item.title}>{item.title}</option>)
     const  [stateTitle, setTitle]:any = useState(true)
@@ -21,6 +25,8 @@ const ModalTask: FC<PropsWithChildren<ModalTaskType>> = ({list, stateModalTask, 
     const  [stateChangeTitle, setChangeTitle]:any = useState(list.title)
     const  [stateChangeResume, setChangeResume]:any = useState(list.resume)
     const  [stateChangeState, setChangeState]:any = useState(list.status)
+    const  [stateChildForm, setChildForm]:any = useState(false)
+    const  [stateChildModalWindow, setChildModalWindow]:any = useState(false)
 
     const inputTitleHandler=()=>{
         dispatch(ChangeTitle({
@@ -55,17 +61,27 @@ const ModalTask: FC<PropsWithChildren<ModalTaskType>> = ({list, stateModalTask, 
                      <div className="ModalTask_Wrapper">
                         <div className="Wrapper_Left">
                             <div className="Wrapper_Form">
-                                 {stateTitle?(
+                              <FlexContainer justify='space-between'> 
+                                {stateTitle?(
                                 <h3 onDoubleClick={()=>setTitle(false)}>{list.title}</h3>  
-                            ):(
+                                ):(
                                 <FlexContainer justify='start' gap='5px'>
                                   <input value={stateChangeTitle} onChange={(e)=>setChangeTitle(e.target.value)}/>
                                   <button onClick={inputTitleHandler}>change</button>
                                   <button onClick={()=>setTitle(true)}>x</button>    
                                 </FlexContainer>
                                  
-                            )}
-                                <button>Add child task</button>
+                                )}
+                             <select value={stateChangeState} onChange={(e)=>{
+                                    setChangeState(e.target.value)
+                                    dispatch(ChangeStatus({
+                                        list: list,
+                                        item: e.target.value})) 
+                                     }}>
+                                    {taskTypes}
+                                </select>
+                            </FlexContainer>
+                                <button onClick={()=>setChildForm(true)}>Add child task</button>
                                 <p>Description</p>
                                 {stateRsume?(
                                     <p className="ModalTask_Resume" onDoubleClick={()=>setRsume(false)}>{list.resume}</p>
@@ -78,18 +94,21 @@ const ModalTask: FC<PropsWithChildren<ModalTaskType>> = ({list, stateModalTask, 
                                 )}
                             </div>
                             <div>
+                                <p>Task:</p>
+                                <div className='Left_TaskChilCont'>
+                                <FlexContainer className='Left_TaskChilCont_item' direction='column-reverse' gap='10px' align='flex-start'>
+                                      {list.childItem?.map(x=><TaskChild item={x}/>) }
+                                       <FormForChildTask addNewChildTask={(TaskiItem:any)=>{
+                                        dispatch(addNewChildTask({item: list,newItem:TaskiItem}))
+                                        setChildForm(false)
+                                        }} stateForm={stateChildForm} onClose={()=>setChildForm(false)}/>
+                                        
+                                    </FlexContainer>
+                                </div>
+                            </div> 
+                            <div>
                                 <p>Activity:</p>
                             </div> 
-                        </div>
-                        <div>
-                        <select value={stateChangeState} onChange={(e)=>{
-                            setChangeState(e.target.value)
-                             dispatch(ChangeStatus({
-                                list: list,
-                                item: e.target.value})) 
-                        }}>
-                            {taskTypes}
-                        </select>
                         </div>
                      </div>  
                     </div>    
