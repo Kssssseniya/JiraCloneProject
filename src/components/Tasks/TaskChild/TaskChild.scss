@@ -4,9 +4,17 @@
     border: 2px solid rgba(117, 32, 255, 0.7);
     padding: 8px;
     border-radius: 8px;
-    cursor: pointer;
+    .TaskChild__Close{
+        width: 100%;
+        display: flex;
+        justify-content: end;
+    }
     box-shadow: 0 0 5px rgba(117, 32, 255, 0.7), 0 0 7px rgba(117, 32, 255, 0.7), 0 0 10px rgba(117, 32, 255, 0.7); 
     select{
         border-radius: 8px;
+        cursor: pointer;
     }
+}
+.TaskChild:hover{
+    background-color: rgba(230, 215, 255, 0.588);
 }

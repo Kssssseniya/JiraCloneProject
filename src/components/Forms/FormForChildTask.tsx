@@ -19,7 +19,9 @@ const FormForChildTask=({NewChilditem, addNewChildTask, onClose, stateForm}:Form
             id: new Date().getTime(),
             status: "Open",
             stateModalWindow: false,
-            childItem: []
+            type: 'child task',
+            childItem: [],
+            history: [],
         }
     }
         setValueTutle("")

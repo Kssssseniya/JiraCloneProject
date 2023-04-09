@@ -1,9 +1,9 @@
 .ModalTask{
-    width: 600px;
-    height: 600px;
-    position: absolute;
-    top: calc(50% - 300px);
-    left: calc(50% - 300px);
+    width: 650px;
+    height: 700px;
+    position: fixed;
+    top: calc(50% - 350px);
+    left: calc(50% - 325px);
     background-color: white;
     box-shadow:
     0 0 5px rgba(117, 32, 255, 0.7),
@@ -12,12 +12,47 @@
     padding: 25px;
     font-size: 18px;
     z-index: 1;
+    overflow: auto;
+    border-radius: 10px;
+    .Modal_Activity{
+        b{
+            display: block;
+            margin-bottom: 8px;
+        }
+    }
+    .Modal__Activity_Count{
+        min-height: auto;
+        max-height: 150px;
+        overflow: auto;
+        word-break:break-all;
+        
+        // p{  
+        //   margin-bottom: 8px;  
+        // }
+        
+    }
+    .Modal__Activity_Count::-webkit-scrollbar {
+        width: 15px;
+      }
+      
+    .Modal__Activity_Count::-webkit-scrollbar-track {
+        background: #f5c9f9;
+        border-radius: 20px;
+      }
+      
+    .Modal__Activity_Count::-webkit-scrollbar-thumb {
+        background-color: rgba(117, 32, 255, 0.7);
+        border-radius: 20px;
+        border: 3px solid rgba(117, 32, 255, 0.7);
+      }  
     .ModalTask_Wrapper{
         padding: 5px;
         .Left_TaskChilCont{
             overflow: auto;
-            height: 180px;
+            min-height: auto;
+            max-height: 180px;
             width: 100%;
+            margin-bottom: 15px;
         }
         .Left_TaskChilCont::-webkit-scrollbar {
             width: 15px;
@@ -37,16 +72,19 @@
             width: 100%;
             padding: 10px;
         }
-        .select{
-            border-radius: 5px;
-            width: 200px;
-        }
+       
         .Wrapper_Form{
             margin-bottom: 40px;
             display: grid;
             row-gap: 8px;
             width: 100%;
             button{
+                font-size: 18px;
+            }
+            button:hover{
+                color: rgb(117, 32, 255)
+            }
+            .Form_BtnAddChild{
                 width: 150px;
                 font-size: 18px;
                 border: 3px solid rgba(117, 32, 255, 1);
@@ -55,22 +93,32 @@
                 color: rgba(117, 32, 255, 1);
                 font-weight: bold;
             }
-            button:hover{
+            .Form_BtnAddChild:hover{
                 background-color: rgb(223, 206, 253);
             }
+            .ModalTask_Resume{
+                width: 100%;
+                min-height: 20px;
+                word-break:break-all;
+                border: 3px solid rgb(187, 184, 184);
+                border-radius: 8px;
+                padding: 5px;
+            }
+
             .ModalTask_Resume:hover, h3:hover{
                 background-color: rgb(216, 212, 212);
                 border-radius: 8px;
+
             }
             select{
                 font-size: 16px;
                 cursor: pointer;
+                width: 200px;
             }
         }
        
         h3{
-            padding: 0;
-            
+            padding: 5px; 
         }
        
         input{
@@ -87,9 +135,29 @@
         }
     }
     
-   
+//    .Progress_scale{
+//     width: 400px;
+//     height: 10px;
+//     border-radius: 10px;
+//     background-color: #f5c9f9;
+//    } 
     .ModalTask_Close{
         float: right;
       
     }
 }
+
+.ModalTask::-webkit-scrollbar {
+    width: 15px;
+  }
+  
+.ModalTask::-webkit-scrollbar-track {
+    background: #f5c9f9;
+    border-radius: 20px;
+  }
+  
+  .ModalTask::-webkit-scrollbar-thumb {
+    background-color: rgba(117, 32, 255, 0.7);
+    border-radius: 20px;
+    border: 3px solid rgba(117, 32, 255, 0.7);
+  }

@@ -12,19 +12,30 @@ interface ModalTaskType{
     stateModalTask: boolean,
     onClose: ()=>void,
     addNewChildTask: any
+
 }
 
 const ModalTask: FC<PropsWithChildren<ModalTaskType>> = ({list, stateModalTask, addNewChildTask, onClose, })=>{
     const {dasks} = useAppSelector(state => state.dasks)
     // const {stateModalWindow} = useAppSelector(state => state.todos)
-    const {ChangeTitle, ChangeResume, ChangeStatus, ChangeStateModalWindow, addChildTask } = todoSlice.actions
+    const {ChangeTitle, ChangeResume, ChangeStatus, ChangeStateModalWindow, addChildTask, changeChildTaskStatus } = todoSlice.actions
     const dispatch = useAppDispatch()
-    const taskTypes = dasks.map((item)=><option key={item.id}  value={item.title}>{item.title}</option>)
+    const taskTypes = dasks.map((item)=>{
+        if(list.type==="parent task"){
+          return <option key={item.id}  value={item.title}>{item.title}</option> 
+        }else{
+            if(item.id<=3){
+            return    <option key={item.id}  value={item.title}>{item.title}</option>  
+            }
+        }
+    
+})
     const  [stateTitle, setTitle]:any = useState(true)
     const  [stateRsume, setRsume]:any = useState(true)
     const  [stateChangeTitle, setChangeTitle]:any = useState(list.title)
     const  [stateChangeResume, setChangeResume]:any = useState(list.resume)
     const  [stateChangeState, setChangeState]:any = useState(list.status)
+    // const  [stateStautsChild, setStautsChild]:any = useState(list.childItem?.map(item=>item.status))
     const  [stateChildForm, setChildForm]:any = useState(false)
     const  [stateChildModalWindow, setChildModalWindow]:any = useState(false)
 
@@ -40,6 +51,12 @@ const ModalTask: FC<PropsWithChildren<ModalTaskType>> = ({list, stateModalTask, 
             item: stateChangeResume}))
             setRsume(true)
     }
+    // const changeStatusHandler=()=>{
+    //     dispatch(changeChildTaskStatus({
+    //         item: list,
+    //         newStatus: 
+    //     }))
+    // }
     // const ChandeStatus=(e:ChangeEvent<HTMLSelectElement>)=>{
     //     // console.log(stateChangeState)
     //     setChangeState(e.target.value)
@@ -50,6 +67,33 @@ const ModalTask: FC<PropsWithChildren<ModalTaskType>> = ({list, stateModalTask, 
    
        
     // }
+    const style = {
+        width: '400px',
+        height: '10px',
+        backgroundColor: 'black',
+        borderRadius: '10px',
+      }
+    const dasksStatus =  dasks.map(item=>item.title)
+    const listStatus = list.childItem?.map(item=>item.status)
+    // console.log(dasksStatus)
+    for(let key in dasksStatus){
+       let count = 0 
+       list.childItem?.forEach(item=>{
+            if(item.status===dasksStatus[key]){
+                
+                count +=1
+               
+            }
+             
+       })
+       console.log(`${dasksStatus[key]} : ${count}`)
+    }
+    // console.log(list.childItem?.map(item=>item.status))
+//    for(let key in list.childItem){
+//         console.log(list.childItem[key])
+//    }
+    // const progressScale = 0
+
     return(
         <>
         {stateModalTask?(
@@ -67,12 +111,12 @@ const ModalTask: FC<PropsWithChildren<ModalTaskType>> = ({list, stateModalTask, 
                                 ):(
                                 <FlexContainer justify='start' gap='5px'>
                                   <input value={stateChangeTitle} onChange={(e)=>setChangeTitle(e.target.value)}/>
-                                  <button onClick={inputTitleHandler}>change</button>
-                                  <button onClick={()=>setTitle(true)}>x</button>    
+                                  <button onClick={inputTitleHandler}>&#10004;</button>
+                                  <button onClick={()=>setTitle(true)}>&#10008;</button>    
                                 </FlexContainer>
                                  
                                 )}
-                             <select value={stateChangeState} onChange={(e)=>{
+                             <select value={list.status} onChange={(e)=>{
                                     setChangeState(e.target.value)
                                     dispatch(ChangeStatus({
                                         list: list,
@@ -81,23 +125,27 @@ const ModalTask: FC<PropsWithChildren<ModalTaskType>> = ({list, stateModalTask, 
                                     {taskTypes}
                                 </select>
                             </FlexContainer>
-                                <button onClick={()=>setChildForm(true)}>Add child task</button>
-                                <p>Description</p>
+                                <button className='Form_BtnAddChild' onClick={()=>setChildForm(true)}>Add child task</button>
+                                <b>Description</b>
                                 {stateRsume?(
-                                    <p className="ModalTask_Resume" onDoubleClick={()=>setRsume(false)}>{list.resume}</p>
+                                   <>{list.resume?(<p className="ModalTask_Resume" onDoubleClick={()=>setRsume(false)}>{list.resume}</p>):(<p className="ModalTask_Resume" onDoubleClick={()=>setRsume(false)}>Add resume...</p>)}</> 
                                  ):(
-                                    <FlexContainer className="ModalTask_Resume" justify='start' gap='5px'>
+                                    <FlexContainer  justify='start' gap='5px'>
                                    <input value={stateChangeResume} onChange={(e)=>setChangeResume(e.target.value)}/> 
-                                   <button onClick={inputResumeHandler}>change</button>
-                                   <button onClick={()=>setRsume(true)}>x</button>  
+                                   <button onClick={inputResumeHandler}>&#10004;</button>
+                                   <button onClick={()=>setRsume(true)}>&#10008;</button>  
                                    </FlexContainer>  
                                 )}
                             </div>
                             <div>
-                                <p>Task:</p>
+                                {/* <p>Progress:</p>
+                                <div className='Progress_scale' style={{...style}}><span></span></div> */}
+                            </div>
+                            <div>
+                                <b>Task:</b>
                                 <div className='Left_TaskChilCont'>
                                 <FlexContainer className='Left_TaskChilCont_item' direction='column-reverse' gap='10px' align='flex-start'>
-                                      {list.childItem?.map(x=><TaskChild item={x}/>) }
+                                      {list.childItem?.map(x=><TaskChild  item={x}/>) }
                                        <FormForChildTask addNewChildTask={(TaskiItem:any)=>{
                                         dispatch(addNewChildTask({item: list,newItem:TaskiItem}))
                                         setChildForm(false)
@@ -106,8 +154,9 @@ const ModalTask: FC<PropsWithChildren<ModalTaskType>> = ({list, stateModalTask, 
                                     </FlexContainer>
                                 </div>
                             </div> 
-                            <div>
-                                <p>Activity:</p>
+                            <div className='Modal_Activity'>
+                                <b>Activity:</b>
+                                <FlexContainer className='Modal__Activity_Count' direction='column-reverse'  align='flex-start' gap='5px'>{list.history?.map(item=><p>{item}</p>)}</FlexContainer>
                             </div> 
                         </div>
                      </div>  

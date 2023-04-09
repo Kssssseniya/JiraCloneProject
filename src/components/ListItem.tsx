@@ -45,7 +45,7 @@ const ListItem: FC<PropsWithChildren<ListItemProps>> = ({list, addTask, children
         
         console.log(todos)
       };
-
+ 
     // const onDropHandler=(e:any, item:any)=>{
     //     e.preventDefault()
     //     // console.log(item)
@@ -70,7 +70,10 @@ const ListItem: FC<PropsWithChildren<ListItemProps>> = ({list, addTask, children
                     e.stopPropagation();
                     setStateDaskDel(item)
                 }}>x</button>):<></> }</div>
-                <h3>{item.title}</h3>
+                <FlexContainer>
+                    <h3>{item.title}</h3>
+                    <span>{todos.filter(x=>x.status===item.title).length}</span>  
+                </FlexContainer>
              <DropContainer onDrop={onDrop} status={item.title}>
                 {todos
                 .filter((y)=>y.status===item.title)
