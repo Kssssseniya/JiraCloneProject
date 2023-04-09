@@ -24,7 +24,9 @@ const FormForTasks = ({Newitem, stateFormTask, addDispatch, closeForm}:any) =>{
             status: valueType,
             resume: valueResume, 
             stateModalWindow: false,
+            type: "parent task",
             childItem: [],
+            history: [],
         }
         
         setValueTutle("")
