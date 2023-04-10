@@ -1,24 +1,25 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { todoSlice } from './store/createSlice';
-import { todoSliceDask } from './store/CreateSliseDask';
+import { todoSlice } from '../store/createSlice';
+import { todoSliceDask } from '../store/CreateSliseDask';
 import './style/style.scss'
-import ListItem from './components/ListItem';
-import BtnAddList from './components/Buttons';
+import ListItem from '../components/ListItem';
+import BtnAddList from '../components/Buttons';
 import { useState } from 'react';
-import { FlexContainer } from './styledComponents/FlexContainer';
-import FormForList from './components/Forms/FormForList';
-import { useAppDispatch, useAppSelector } from './hooks/redux';
+import { FlexContainer } from '../styledComponents/FlexContainer';
+import FormForList from '../components/Forms/FormForList';
+import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { $CombinedState } from '@reduxjs/toolkit';
-import FormForTasks from './components/Forms/FormForTasks';
-import TasksItem from './components/Tasks/TasksItem';
-import NavBlock from './components/Navblock/Navblock';
-import Header from './components/Header/Header';
-import ModalDelete from './components/ModalDelete/ModalDelete';
+import FormForTasks from '../components/Forms/FormForTasks';
+import TasksItem from '../components/Tasks/TasksItem';
+import NavBlock from '../components/Navblock/Navblock';
+import Header from '../components/Header/Header';
+import ModalDelete from '../components/ModalDelete/ModalDelete';
 import {Routes, Route} from 'react-router-dom'
-import CalendarWindow from './components/Calendar/CalendarWindow/CalendarWindow';
+import CalendarWindow from '../components/Calendar/CalendarWindow/CalendarWindow';
+import { Outlet} from "react-router-dom"
 
-function App() {
+function DashBoard() {
   const {todos} = useAppSelector(state=>state.todos)
   const {dasks} = useAppSelector(state=>state.dasks)
   const { addTodo,  } = todoSlice.actions
@@ -66,13 +67,14 @@ const addNewTask = (taskItem:any) =>{
               <FormForTasks stateFormTask={stateFormTask} addDispatch={addNewTask} closeForm={()=>setStateFormTask(false)}/>
             <NavBlock list={navList}/>
               {/* <FlexContainer padding = {'40px 0'} direction = {'row'}  gap = {'10px'}> */}
-                <Routes>
+                {/* <Routes>
                   <Route path='/' element={
                   <ListItem addList={()=>{setStateFormDask(true)}}  list={dasks} addTask={()=>setStateFormTask(true)} >
                   <TasksItem />
                 </ListItem>}/>
                 <Route path='calendar' element={<CalendarWindow/>}/>
-                </Routes>
+                </Routes> */}
+               <Outlet/> 
           </FlexContainer>
           
     
@@ -80,4 +82,4 @@ const addNewTask = (taskItem:any) =>{
   );
 }
 
-export default App;
+export default DashBoard;

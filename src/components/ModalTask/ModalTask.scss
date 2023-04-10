@@ -5,10 +5,11 @@
     top: calc(50% - 350px);
     left: calc(50% - 325px);
     background-color: white;
-    box-shadow:
-    0 0 5px rgba(117, 32, 255, 0.7),
-    0 0 20px rgba(117, 32, 255, 0.7),
-    0 0 40px rgba(117, 32, 255, 0.7);
+    // box-shadow:
+    // 0 0 5px rgba(117, 32, 255, 0.7),
+    // 0 0 10px rgba(117, 32, 255, 0.7),
+    // 0 0 20px rgba(117, 32, 255, 0.7);
+    border: 5px solid rgba(117, 32, 255, 0.504);
     padding: 25px;
     font-size: 18px;
     z-index: 1;
@@ -143,7 +144,10 @@
 //    } 
     .ModalTask_Close{
         float: right;
-      
+        font-weight: bold;
+    }
+    .ModalTask_Close:hover{
+        color: rgb(117, 32, 255)
     }
 }
 
