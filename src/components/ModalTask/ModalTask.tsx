@@ -101,7 +101,7 @@ const ModalTask: FC<PropsWithChildren<ModalTaskType>> = ({list, stateModalTask, 
             {
                 
                     <div className="ModalTask">
-                     <button className="ModalTask_Close" onClick={onClose}>x</button>
+                     <button className="ModalTask_Close" onClick={onClose}>Back</button>
                      <div className="ModalTask_Wrapper">
                         <div className="Wrapper_Left">
                             <div className="Wrapper_Form">
