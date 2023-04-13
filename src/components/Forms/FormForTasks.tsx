@@ -17,7 +17,7 @@ const FormForTasks = ({Newitem, stateFormTask, addDispatch, closeForm}:any) =>{
     },[dasks])
    
     const addNewTask =()=>{
-        if(valueTitle!==''&&valueTitle!==''&&valueResume!==''&&valueResume!==' '){
+        if(valueTitle!==''&&valueTitle!==''){
             Newitem = {
             title: valueTitle,
             id: new Date().getTime(),
@@ -36,6 +36,11 @@ const FormForTasks = ({Newitem, stateFormTask, addDispatch, closeForm}:any) =>{
         addDispatch(Newitem )  
         }
     }
+    const keyDownHandler = (event:any) => {
+        if(event.keyCode === 13) {
+            addNewTask()
+        }
+      }
     const closeFormHandler=()=>{
         setValueTutle("")
         setResume("")
@@ -45,8 +50,8 @@ const FormForTasks = ({Newitem, stateFormTask, addDispatch, closeForm}:any) =>{
         <>
         {stateFormTask?(
           <div className="FormForTasks">
-            <input value={valueTitle} onChange = {(e)=>setValueTutle(e.target.value)} type={"text"} placeholder = "Add title"/>
-            <input value={valueResume} onChange = {(e)=>setResume(e.target.value)} type={"text"} placeholder = "Add resume"/>
+            <input value={valueTitle} onChange = {(e)=>setValueTutle(e.target.value)} type={"text"} placeholder = "Add title" onKeyDown={keyDownHandler}/>
+            <input value={valueResume} onChange = {(e)=>setResume(e.target.value)} type={"text"} placeholder = "Add resume" onKeyDown={keyDownHandler}/>
             <select  onChange={(e)=>setType(e.target.value)}>
                 {taskTypes}
             </select>

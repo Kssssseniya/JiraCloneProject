@@ -8,15 +8,17 @@ import moment from 'moment'
 interface CalendarFormType{
     newEvent?: EventFormType,
     addNewEvent: (newEvent:EventFormType)=>void
+    stateForm: boolean,
+    closeForm: ()=>void
 }
-interface EventFormType{
+export interface EventFormType{
     id: number,
     title: string,
     start: any,
     end: any,
 }
-const CalendarForm =({newEvent, addNewEvent}:CalendarFormType)=>{
-    // const  [stateTitle, setTitle]:any = useState('')
+const CalendarForm =({newEvent, addNewEvent, stateForm, closeForm}:CalendarFormType)=>{
+    // const  [stateForm, setForm]:any = useState('')
     const  [stateEvent, setEvent]:any = useState({title: '', start: null, end: null})
     const calendarFormHandler =()=>{
         newEvent = {
@@ -26,7 +28,7 @@ const CalendarForm =({newEvent, addNewEvent}:CalendarFormType)=>{
             end: stateEvent.end.toDate(),
             
         }
-
+       
         console.log(newEvent)
         // console.log(stateDateStart)
         setEvent({title: '', start: null, end: null})
@@ -36,26 +38,41 @@ const CalendarForm =({newEvent, addNewEvent}:CalendarFormType)=>{
         // setTimeEnd(null)
         addNewEvent(newEvent)
     }
+    const keyDownHandler = (event:any) => {
+        if(event.keyCode === 13) {
+            calendarFormHandler()
+        }
+      }
     return(
         <>
-            <FlexContainer className='FormCalendar_Wrapper' direction='column' gap='20px' align='flex-start' padding='15px'>
-            <TextField value={stateEvent.title} onChange={(e)=>setEvent({...stateEvent, title: e.target.value})} size="small"  id="outlined-basic" label="Title" variant="outlined" />
-            <FlexContainer gap='5px'>
-            <DateTimePicker
-                label="Controlled picker"
-                value={stateEvent.start}
-                onChange={(newValue:any) => setEvent({...stateEvent, start: newValue})}
-                />
+        {stateForm?(
+            <FlexContainer className='FormCalendar_Wrapper' direction='column' gap='20px' align='flex-start' padding='15px' width='400px' >
+                <FlexContainer justify='space-between' width='100%' >
+                   {/* <p>Enter the title</p>  */}
+                    <TextField value={stateEvent.title} onChange={(e)=>setEvent({...stateEvent, title: e.target.value})} size="small"  id="outlined-basic" label="Title" variant="outlined" onKeyDown={keyDownHandler} /> 
+                </FlexContainer>    
+                <FlexContainer gap='10px' width='100%' justify='space-between'>
+                    {/* <p>Enter the start date of the event</p> */}
+                    <DateTimePicker
+                    label="Event start"
+                    value={stateEvent.start}
+                    onChange={(newValue:any) => setEvent({...stateEvent, start: newValue})}
+                    />
+                </FlexContainer>
+                <FlexContainer gap='10px' width='100%' justify='space-between'>
+                    {/* <p>Enter the end date of the event</p> */}
+                    <DateTimePicker
+                    label="Event end"
+                    value={stateEvent.end}
+                    onChange={(newValue:any) => setEvent({...stateEvent, end: newValue})}
+                    />
+                </FlexContainer>
+                    <FlexContainer width='100%' gap='30px' >
+                    <button onClick={calendarFormHandler} className='BtnAdd' color="secondary">Add Task</button> 
+                    <button onClick={closeForm} className='BtnAdd' color="secondary">Close</button>  
+                     </FlexContainer>
             </FlexContainer>
-            <FlexContainer gap='5px'>
-            <DateTimePicker
-                label="Controlled picker"
-                value={stateEvent.end}
-                onChange={(newValue:any) => setEvent({...stateEvent, end: newValue})}
-                />
-            </FlexContainer>
-            <Button onClick={calendarFormHandler} className='BtnAdd' color="secondary">Add Task</Button>
-            </FlexContainer>
+            ):(<></>)}
         </>
     )
 }

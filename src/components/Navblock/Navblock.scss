@@ -6,14 +6,38 @@
     // height: inherit;
     height: calc(100vh - 100px);
     // background-color: rgb(255, 255, 255);
-    box-shadow:  5px 0 5px -5px rgba(117, 32, 255, 0.7);
-    gap: 20px;
+    box-shadow:  8px 0 8px -5px rgba(117, 32, 255, 0.7);
+    background-color: rgba(134, 61, 251, 0.358);
+    // gap: 40px;
     ul{
         list-style-type: none;
         align-items: center;
+        margin-top: 50px;
         li{
             cursor: pointer;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 8px;
+            svg{
+                width: 20px;
+                fill: rgba(193, 22, 193, 0.979);
+            }
+            a{
+                font-size: 20px;
+                text-decoration: none;
+                font-weight: bold;
+                
+            }
+        }
+        li:hover{
+            svg{
+             fill: rgb(244, 79, 244); 
+             stroke:rgba(213, 27, 213, 0.979);
+             stroke-width: 2px; 
+            }
+            
         }
       
     }
+   
 }

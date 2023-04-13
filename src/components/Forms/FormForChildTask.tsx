@@ -28,17 +28,23 @@ const FormForChildTask=({NewChilditem, addNewChildTask, onClose, stateForm}:Form
         addNewChildTask(NewChilditem)
 
     }
+    const keyDownHandler = (event:any) => {
+        if(event.keyCode === 13) {
+            addNewTask()
+        }
+      }
     const closeForm =()=>{
         setValueTutle("")
         onClose()
     }
+    
     return(
         <>
         {stateForm?(
         <FlexContainer justify='flex-start' className ="FormForChildTask">
-            <input value={valueTitle} onChange = {(e)=>setValueTutle(e.target.value)} type={"text"} placeholder = "Add title"/>
+            <input value={valueTitle} onChange = {(e)=>setValueTutle(e.target.value)} type={"text"} placeholder = "Add title" onKeyDown={keyDownHandler}/>
             <FlexContainer className ="FormForChildTask_Btn" gap='5px'>
-               <button onClick={addNewTask}>&#10004;</button>
+               <button onClick={addNewTask}  >&#10004;</button>
                 <button onClick={closeForm}>&#10008;</button> 
             </FlexContainer>
         </FlexContainer>

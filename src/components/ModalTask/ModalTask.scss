@@ -12,7 +12,7 @@
     border: 5px solid rgba(117, 32, 255, 0.504);
     padding: 25px;
     font-size: 18px;
-    z-index: 1;
+    z-index: 2;
     overflow: auto;
     border-radius: 10px;
     .Modal_Activity{
@@ -22,26 +22,32 @@
         }
     }
     .Modal__Activity_Count{
-        min-height: auto;
-        max-height: 150px;
-        overflow: auto;
-        word-break:break-all;
+        // min-height: auto;
+        // max-height: 150px;
+        height: inherit;
+        // overflow: auto;
+        // word-break:break-all;
         
         // p{  
         //   margin-bottom: 8px;  
         // }
         
     }
-    .Modal__Activity_Count::-webkit-scrollbar {
+    .Modal__Activity_Scroll{
+        min-height: auto;
+        max-height: 150px;
+        overflow: auto; 
+    }
+    .Modal__Activity_Scroll::-webkit-scrollbar {
         width: 15px;
       }
       
-    .Modal__Activity_Count::-webkit-scrollbar-track {
+    .Modal__Activity_Scroll::-webkit-scrollbar-track {
         background: #f5c9f9;
         border-radius: 20px;
       }
       
-    .Modal__Activity_Count::-webkit-scrollbar-thumb {
+    .Modal__Activity_Scroll::-webkit-scrollbar-thumb {
         background-color: rgba(117, 32, 255, 0.7);
         border-radius: 20px;
         border: 3px solid rgba(117, 32, 255, 0.7);

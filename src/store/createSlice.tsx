@@ -19,7 +19,8 @@ export interface ToDoType {
     executor?: string[],
     childItem?: ToDoType[],
     stateModalWindow: boolean,
-    history?: string[]
+    history?: string[],
+    comments?: string[]
 }
 const initialState: ToDoState ={
     todos: [],

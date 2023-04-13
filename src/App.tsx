@@ -61,7 +61,7 @@ const addNewTask = (taskItem:any) =>{
     <div className="App">
 
        <Header/>
-          <FlexContainer align = {'flex-start'} justify = {'flex-start'} gap = {'20px'}>
+          <FlexContainer className='Wrapper' align = {'flex-start'} justify = {'flex-start'} >
               <FormForList stateForm={stateFormDask} addForm = {addNewList} closeForm={()=>setStateFormDask(false)}/>
               <FormForTasks stateFormTask={stateFormTask} addDispatch={addNewTask} closeForm={()=>setStateFormTask(false)}/>
             <NavBlock list={navList}/>

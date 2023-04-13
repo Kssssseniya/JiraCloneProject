@@ -51,6 +51,16 @@ const ModalTask: FC<PropsWithChildren<ModalTaskType>> = ({list, stateModalTask, 
             item: stateChangeResume}))
             setRsume(true)
     }
+    const keyDownTitleHandler = (event:any) => {
+        if(event.keyCode === 13) {
+            inputTitleHandler()
+        }
+      }
+      const keyDownResumeHandler = (event:any) => {
+        if(event.keyCode === 13) {
+            inputResumeHandler()
+        }
+      }
     // const changeStatusHandler=()=>{
     //     dispatch(changeChildTaskStatus({
     //         item: list,
@@ -110,7 +120,7 @@ const ModalTask: FC<PropsWithChildren<ModalTaskType>> = ({list, stateModalTask, 
                                 <h3 onDoubleClick={()=>setTitle(false)}>{list.title}</h3>  
                                 ):(
                                 <FlexContainer justify='start' gap='5px'>
-                                  <input value={stateChangeTitle} onChange={(e)=>setChangeTitle(e.target.value)}/>
+                                  <input value={stateChangeTitle} onChange={(e)=>setChangeTitle(e.target.value)} onKeyDown={keyDownTitleHandler}/>
                                   <button onClick={inputTitleHandler}>&#10004;</button>
                                   <button onClick={()=>setTitle(true)}>&#10008;</button>    
                                 </FlexContainer>
@@ -131,7 +141,7 @@ const ModalTask: FC<PropsWithChildren<ModalTaskType>> = ({list, stateModalTask, 
                                    <>{list.resume?(<p className="ModalTask_Resume" onDoubleClick={()=>setRsume(false)}>{list.resume}</p>):(<p className="ModalTask_Resume" onDoubleClick={()=>setRsume(false)}>Add resume...</p>)}</> 
                                  ):(
                                     <FlexContainer  justify='start' gap='5px'>
-                                   <input value={stateChangeResume} onChange={(e)=>setChangeResume(e.target.value)}/> 
+                                   <input value={stateChangeResume} onChange={(e)=>setChangeResume(e.target.value)} onKeyDown={keyDownResumeHandler}/> 
                                    <button onClick={inputResumeHandler}>&#10004;</button>
                                    <button onClick={()=>setRsume(true)}>&#10008;</button>  
                                    </FlexContainer>  
@@ -156,7 +166,7 @@ const ModalTask: FC<PropsWithChildren<ModalTaskType>> = ({list, stateModalTask, 
                             </div> 
                             <div className='Modal_Activity'>
                                 <b>Activity:</b>
-                                <FlexContainer className='Modal__Activity_Count' direction='column-reverse'  align='flex-start' gap='5px'>{list.history?.map(item=><p>{item}</p>)}</FlexContainer>
+                               <div className='Modal__Activity_Scroll' > <FlexContainer className='Modal__Activity_Count' direction='column-reverse'  align='flex-start' gap='5px'>{list.history?.map(item=><p>{item}</p>)}</FlexContainer></div>
                             </div> 
                         </div>
                      </div>  

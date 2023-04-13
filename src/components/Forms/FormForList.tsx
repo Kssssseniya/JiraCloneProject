@@ -13,12 +13,16 @@ const FormForList = ({item, addForm, stateForm, closeForm}:any)=>{
         }
         
     }
-      
+    const keyDownHandler = (event:any) => {
+        if(event.keyCode === 13) {
+            addNewList()
+        }
+      }
        return(
         <>
        {stateForm ?(
         <div className='Form_Container'>
-            <input value={valueName} onChange = {(e)=>setValue(e.target.value)} type={"text"} placeholder = "Add header for list"/>
+            <input value={valueName} onChange = {(e)=>setValue(e.target.value)} type={"text"} placeholder = "Add header for list" onKeyDown={keyDownHandler}/>
             <FlexContainer gap = '15px'>
                 <button onClick={closeForm}>Close</button>
                 <button onClick={addNewList}>Add</button>

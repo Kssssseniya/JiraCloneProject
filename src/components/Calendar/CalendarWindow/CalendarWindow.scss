@@ -1,3 +1,93 @@
 .Calendar_Wrapper{
     width: 100%;
+    margin-top: 10px;
+    .AddForm{
+        width: 50px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        transition: 0.5s;
+        svg{
+           fill: rgba(117, 32, 255, 0.7); 
+        }
+    }
+    .AddForm:hover{
+        width: 55px;
+        transition: 0.5s;
+    }
+    .rbc-header{
+        background-color: rgba(117, 32, 255, 0.492);
+        padding: 4px;
+        font-weight: bold;
+    }
+    .rbc-event{
+        background-color: rgb(105, 105, 241) !important;
+    }
+    // .rbc-events-container{
+    //     background-color: rgba(183, 154, 230, 0.34) !important;
+    // }
+    .rbc-off-range-bg {
+        background: rgba(135, 118, 174, 0.384);
+    }
+    .rbc-today {
+        background-color: #e36fe0a8;
+    }
+    // .rbc-day-bg + .rbc-day-bg {
+    //     border-left: 2px solid #dddddd;
+    // }
+    .rbc-month-view {
+        border: 3px solid rgba(117, 32, 255, 0.492);
+        background-color: #ffffffa3;
+        box-shadow: 0 0 5px rgba(117, 32, 255, 0.7), 0 0 10px rgba(117, 32, 255, 0.7), 0 0 20px rgba(117, 32, 255, 0.7);
+    }
+    .rbc-time-view {
+        background-color: #ffffffa3;
+        border: 3px solid rgba(117, 32, 255, 0.492);
+        box-shadow: 0 0 5px rgba(77, 20, 167, 0.7), 0 0 10px rgba(117, 32, 255, 0.7), 0 0 20px rgba(117, 32, 255, 0);
+    }
+    .rbc-agenda-view table.rbc-agenda-table{
+        background-color: #ffffffa3;
+        border: 1px solid rgba(117, 32, 255, 0.492);
+        box-shadow: 0 0 5px rgba(117, 32, 255, 0.7), 0 0 10px rgba(117, 32, 255, 0.7), 0 0 20px rgba(117, 32, 255, 0);
+    }
+    .rbc-btn-group {
+        background-color: rgba(117, 32, 255, 0.492);
+        border-radius: 4px;
+        button{
+            cursor: pointer;
+            font-weight: bold; 
+            border: 1px solid rgba(111, 52, 205, 0.492); 
+        }
+        button:hover{
+            background-color: rgba(111, 52, 205, 0.492);  
+        }
+        button.rbc-active{
+            background-color: rgba(50, 18, 102, 0.492);  
+        }
+        button:focus{
+            background-color: rgba(50, 18, 102, 0.492);   
+        }
+        .rbc-toolbar button:focus{
+           background-color: rgba(50, 18, 102, 0.492);  
+        }
+       
+    }
+     .rbc-toolbar .rbc-toolbar-label{
+            font-weight: bold;
+        }
+
+    .rbc-time-content::-webkit-scrollbar {
+        width: 18px;
+      }
+      
+      .rbc-time-content::-webkit-scrollbar-track {
+        background: #f5c9f9;
+        border-radius: 20px;
+      }
+      
+      .rbc-time-content::-webkit-scrollbar-thumb {
+        background-color: rgba(117, 32, 255, 0.7);
+        border-radius: 20px;
+        // border: 3px solid rgba(117, 32, 255, 0.7);
+      }   
 }

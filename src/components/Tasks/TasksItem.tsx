@@ -73,7 +73,7 @@ const deleteTaskHandler = ()=> dispatch(deleteTask(item))
            <button onClick={(e)=>{
             setStateModalDelete(true)
             e.stopPropagation();
-            }}>x</button>
+            }}>	&#10006;</button>
             <FlexContainer direction='column'>
                 <h3>{item.title}</h3>
                 <p>{item.resume}</p>  

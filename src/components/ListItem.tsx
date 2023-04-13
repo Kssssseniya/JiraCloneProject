@@ -69,12 +69,12 @@ const ListItem: FC<PropsWithChildren<ListItemProps>> = ({list, addTask, children
                     setStateModalDelete(true)
                     e.stopPropagation();
                     setStateDaskDel(item)
-                }}>x</button>):<></> }</div>
+                }}>&#10006;</button>):<></> }</div>
                 <FlexContainer>
                     <h3>{item.title}</h3>
                     <span>{todos.filter(x=>x.status===item.title).length}</span>  
                 </FlexContainer>
-             <DropContainer onDrop={onDrop} status={item.title}>
+             <DropContainer onDrop={onDrop} status={item.title}  >
                 {todos
                 .filter((y)=>y.status===item.title)
                 .map((x,id)=>(

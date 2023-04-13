@@ -7,7 +7,7 @@ export const FlexContainer:any= styled.div`
   justify-content: ${({justify}:any) => justify || 'center'};
   align-items: ${({align}:any) => align || 'center'};
   gap: ${({gap}:any) => gap || 0};
-  // width: 100%;
+  width: ${({width}:any) => width || 'auto'};
   // height: 100%;
   padding: ${({padding}:any)=>padding||0};
 `

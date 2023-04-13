@@ -1,6 +1,6 @@
-.FormCalendar_Wrapper{
+.TaskCalendar_Wrapper{
     width: 400px;
-    height: 400px;
+    height: 200px;
     border-radius: 10px;
     margin-right: 15px;
     position: absolute;
@@ -33,6 +33,28 @@
     .BtnAdd:hover{
         background-color: rgba(117, 32, 255, 0.389);
         transition: 0.5s;
+
+    }
+    .BtnDelete{
+        width: 40px;
+        font-size: 18px;
+        cursor: pointer;
+        font-weight: bold;
+        color: rgba(105, 24, 134, 0.856);
+        text-transform: uppercase;
+        border: none;
+        background-color: inherit;
+        float: right;
+        svg{
+            transition: 1s;
+        }
+       
+    }
+    .BtnDelete:hover{
+        svg{
+            transform: rotate(45deg);
+            transition: 1s;
+        }
     }
     // p{
     //     width: 150px;
