@@ -5,16 +5,17 @@
     top: calc(50% - 350px);
     left: calc(50% - 325px);
     background-color: white;
-    // box-shadow:
-    // 0 0 5px rgba(117, 32, 255, 0.7),
-    // 0 0 10px rgba(117, 32, 255, 0.7),
-    // 0 0 20px rgba(117, 32, 255, 0.7);
     border: 5px solid rgba(117, 32, 255, 0.504);
     padding: 25px;
     font-size: 18px;
     z-index: 2;
     overflow: auto;
     border-radius: 10px;
+    .Resume_Inpit{
+        height: auto;
+        width: 100%;
+        resize: none;
+    }
     .Modal_Activity{
         b{
             display: block;
@@ -22,16 +23,7 @@
         }
     }
     .Modal__Activity_Count{
-        // min-height: auto;
-        // max-height: 150px;
-        height: inherit;
-        // overflow: auto;
-        // word-break:break-all;
-        
-        // p{  
-        //   margin-bottom: 8px;  
-        // }
-        
+        height: inherit;    
     }
     .Modal__Activity_Scroll{
         min-height: auto;
@@ -129,6 +121,7 @@
         }
        
         input{
+            padding: 4px;
         cursor: pointer;
         font-size: 18px;
         border-radius: 8px;
@@ -142,12 +135,6 @@
         }
     }
     
-//    .Progress_scale{
-//     width: 400px;
-//     height: 10px;
-//     border-radius: 10px;
-//     background-color: #f5c9f9;
-//    } 
     .ModalTask_Close{
         float: right;
         font-weight: bold;

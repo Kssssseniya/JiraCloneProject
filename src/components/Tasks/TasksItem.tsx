@@ -10,10 +10,10 @@ import { FlexContainer } from "../../styledComponents/FlexContainer";
 import ModalTask from "../ModalTask/ModalTask";  
 import ModalDelete from "../ModalDelete/ModalDelete";
 
-const TasksItem: FC<any> =({tasks, item, index, board, moveItem, btnDelete}:any)=>{
+const TasksItem: FC<any> =({item, index, board, moveItem}:any)=>{
     const { ChangeStateModalWindow, deleteTask, addChildTask} = todoSlice.actions
     const dispatch = useAppDispatch()
-    const  [stateModalDelete, setStateModalDelete]:any = useState(false)
+    const  [stateModalDelete, setStateModalDelete] = useState<boolean>(false)
     // const {stateModalWindow} = useAppSelector(state=>state.todos)
     const ref= useRef<HTMLDivElement>(null);
     const [,drop] = useDrop<any>({

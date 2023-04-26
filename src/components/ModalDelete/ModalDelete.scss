@@ -5,14 +5,15 @@
     0 0 40px rgba(117, 32, 255, 0.7);
     border-radius: 8px;
     width: 350px;
-    height: 100px;
-    padding: 10px;
+    height: 115px;
+    padding: 12px;
     background-color: white;
     font-size: 16px;
     position: absolute;
     
     z-index: 1;
     left: calc(50% - 175px);
+    top: calc(50% - 57px);
     p{
         margin-bottom: 15px;
         font-weight: bold;

@@ -1,9 +1,8 @@
-import { Button, TextField } from '@mui/material'
+import {  TextField } from '@mui/material'
 import { FlexContainer } from '../../../styledComponents/FlexContainer'
 import './CalendarForm.scss'
-import { DatePicker, TimePicker, DateTimePicker } from '@mui/x-date-pickers'
+import { DateTimePicker } from '@mui/x-date-pickers'
 import { useState } from 'react'
-import moment from 'moment'
 
 interface CalendarFormType{
     newEvent?: EventFormType,
@@ -18,7 +17,6 @@ export interface EventFormType{
     end: any,
 }
 const CalendarForm =({newEvent, addNewEvent, stateForm, closeForm}:CalendarFormType)=>{
-    // const  [stateForm, setForm]:any = useState('')
     const  [stateEvent, setEvent]:any = useState({title: '', start: null, end: null})
     const calendarFormHandler =()=>{
         newEvent = {
@@ -29,13 +27,7 @@ const CalendarForm =({newEvent, addNewEvent, stateForm, closeForm}:CalendarFormT
             
         }
        
-        console.log(newEvent)
-        // console.log(stateDateStart)
         setEvent({title: '', start: null, end: null})
-        // setDatestart(null)
-        // setDateEnd(null)
-        // setTimeStart(null)
-        // setTimeEnd(null)
         addNewEvent(newEvent)
     }
     const keyDownHandler = (event:any) => {
@@ -48,11 +40,9 @@ const CalendarForm =({newEvent, addNewEvent, stateForm, closeForm}:CalendarFormT
         {stateForm?(
             <FlexContainer className='FormCalendar_Wrapper' direction='column' gap='20px' align='flex-start' padding='15px' width='400px' >
                 <FlexContainer justify='space-between' width='100%' >
-                   {/* <p>Enter the title</p>  */}
                     <TextField value={stateEvent.title} onChange={(e)=>setEvent({...stateEvent, title: e.target.value})} size="small"  id="outlined-basic" label="Title" variant="outlined" onKeyDown={keyDownHandler} /> 
                 </FlexContainer>    
                 <FlexContainer gap='10px' width='100%' justify='space-between'>
-                    {/* <p>Enter the start date of the event</p> */}
                     <DateTimePicker
                     label="Event start"
                     value={stateEvent.start}
@@ -60,7 +50,6 @@ const CalendarForm =({newEvent, addNewEvent, stateForm, closeForm}:CalendarFormT
                     />
                 </FlexContainer>
                 <FlexContainer gap='10px' width='100%' justify='space-between'>
-                    {/* <p>Enter the end date of the event</p> */}
                     <DateTimePicker
                     label="Event end"
                     value={stateEvent.end}

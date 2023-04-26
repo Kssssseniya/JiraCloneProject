@@ -29,9 +29,11 @@ function App() {
   const  [stateModalDelete, setStateModalDelete]:any = useState(false)
   const navList = [
     {
+    id: 1,
     name: 'ToDo board',
     link: '/'
   }, {
+    id: 2,
     name: 'Calendar',
     link: 'calendar'
     

@@ -2,40 +2,29 @@ import './ModalTask.scss'
 import { ToDoType } from '../../store/createSlice'
 import { useAppSelector, useAppDispatch } from "../../hooks/redux"
 import { todoSlice } from '../../store/createSlice';
-import React, {FC, PropsWithChildren, useState, useRef, ChangeEvent} from 'react';
+import React, {FC, PropsWithChildren, useState} from 'react';
 import { FlexContainer } from '../../styledComponents/FlexContainer';
 import FormForChildTask from '../Forms/FormForChildTask';
-import ModalChildTask from '../Tasks/TaskChild/TaskChild';
 import TaskChild from '../Tasks/TaskChild/TaskChild';
 interface ModalTaskType{
     list: ToDoType,
     stateModalTask: boolean,
     onClose: ()=>void,
-    addNewChildTask: any
+    addNewChildTask: (item?: any, newItem?: ToDoType)=>void
 
 }
 
 const ModalTask: FC<PropsWithChildren<ModalTaskType>> = ({list, stateModalTask, addNewChildTask, onClose, })=>{
     const {dasks} = useAppSelector(state => state.dasks)
     // const {stateModalWindow} = useAppSelector(state => state.todos)
-    const {ChangeTitle, ChangeResume, ChangeStatus, ChangeStateModalWindow, addChildTask, changeChildTaskStatus } = todoSlice.actions
+    const {ChangeTitle, ChangeResume, ChangeStatus } = todoSlice.actions
     const dispatch = useAppDispatch()
-    const taskTypes = dasks.map((item)=>{
-        if(list.type==="parent task"){
-          return <option key={item.id}  value={item.title}>{item.title}</option> 
-        }else{
-            if(item.id<=3){
-            return    <option key={item.id}  value={item.title}>{item.title}</option>  
-            }
-        }
-    
-})
+    const taskTypes = dasks.map((item)=> <option key={item.id}  value={item.title}>{item.title}</option> )
     const  [stateTitle, setTitle]:any = useState(true)
     const  [stateRsume, setRsume]:any = useState(true)
     const  [stateChangeTitle, setChangeTitle]:any = useState(list.title)
     const  [stateChangeResume, setChangeResume]:any = useState(list.resume)
     const  [stateChangeState, setChangeState]:any = useState(list.status)
-    // const  [stateStautsChild, setStautsChild]:any = useState(list.childItem?.map(item=>item.status))
     const  [stateChildForm, setChildForm]:any = useState(false)
     const  [stateChildModalWindow, setChildModalWindow]:any = useState(false)
 
@@ -122,7 +111,10 @@ const ModalTask: FC<PropsWithChildren<ModalTaskType>> = ({list, stateModalTask, 
                                 <FlexContainer justify='start' gap='5px'>
                                   <input value={stateChangeTitle} onChange={(e)=>setChangeTitle(e.target.value)} onKeyDown={keyDownTitleHandler}/>
                                   <button onClick={inputTitleHandler}>&#10004;</button>
-                                  <button onClick={()=>setTitle(true)}>&#10008;</button>    
+                                  <button onClick={()=>{
+                                    setTitle(true)
+                                    setChangeTitle(list.title)
+                                    }}>&#10008;</button>    
                                 </FlexContainer>
                                  
                                 )}
@@ -141,22 +133,21 @@ const ModalTask: FC<PropsWithChildren<ModalTaskType>> = ({list, stateModalTask, 
                                    <>{list.resume?(<p className="ModalTask_Resume" onDoubleClick={()=>setRsume(false)}>{list.resume}</p>):(<p className="ModalTask_Resume" onDoubleClick={()=>setRsume(false)}>Add resume...</p>)}</> 
                                  ):(
                                     <FlexContainer  justify='start' gap='5px'>
-                                   <input value={stateChangeResume} onChange={(e)=>setChangeResume(e.target.value)} onKeyDown={keyDownResumeHandler}/> 
+                                   <input className="Resume_Inpit"  value={stateChangeResume} onChange={(e)=>setChangeResume(e.target.value)} onKeyDown={keyDownResumeHandler}/> 
                                    <button onClick={inputResumeHandler}>&#10004;</button>
-                                   <button onClick={()=>setRsume(true)}>&#10008;</button>  
+                                   <button onClick={()=>{
+                                    setRsume(true)
+                                    setChangeResume(list.resume)
+                                    }}>&#10008;</button>  
                                    </FlexContainer>  
                                 )}
-                            </div>
-                            <div>
-                                {/* <p>Progress:</p>
-                                <div className='Progress_scale' style={{...style}}><span></span></div> */}
                             </div>
                             <div>
                                 <b>Task:</b>
                                 <div className='Left_TaskChilCont'>
                                 <FlexContainer className='Left_TaskChilCont_item' direction='column-reverse' gap='10px' align='flex-start'>
                                       {list.childItem?.map(x=><TaskChild  item={x}/>) }
-                                       <FormForChildTask addNewChildTask={(TaskiItem:any)=>{
+                                       <FormForChildTask addNewChildTask={(TaskiItem:ToDoType)=>{
                                         dispatch(addNewChildTask({item: list,newItem:TaskiItem}))
                                         setChildForm(false)
                                         }} stateForm={stateChildForm} onClose={()=>setChildForm(false)}/>

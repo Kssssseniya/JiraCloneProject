@@ -1,6 +1,6 @@
 import { ToDoType } from "../../../store/createSlice"
 import { useAppSelector } from "../../../hooks/redux"
-import { useState, useEffect} from "react"
+import { useState} from "react"
 import ModalTask from "../../ModalTask/ModalTask"
 import { todoSlice } from "../../../store/createSlice"
 import { useAppDispatch } from "../../../hooks/redux"
@@ -9,8 +9,6 @@ import { FlexContainer } from "../../../styledComponents/FlexContainer"
 import ModalDelete from "../../ModalDelete/ModalDelete"
 interface TaskChildType{
     item: ToDoType,
-    closeParentWindow?: any
-    // changeStatus: ()=>void
 }
 
 
@@ -20,18 +18,16 @@ const TaskChild=({item}:TaskChildType)=>{
 
     const dispatch = useAppDispatch()
 
-    const  [stateChildModalWindow, setChildModalWindow]:any = useState(false)
-    const  [stateChangeState, setChangeState]:any = useState(item.status)
-    const  [stateBtnDelete, setBtnDelete]:any = useState(false)
+    const  [stateChildModalWindow, setChildModalWindow] = useState<boolean>(false)
+    const  [stateChangeState, setChangeState] = useState<string>(item.status)
+    const  [stateBtnDelete, setBtnDelete] = useState<boolean>(false)
     const {addChildTaskForChild, changeChildTaskStatus, deleteChildTask } = todoSlice.actions
     const OptionTypes = dasks
-    .filter(item=>item.id<=3)
     .map((item)=><option key={item.id} value={item.title}>{item.title}</option>)
     return(
         <>
         <div className="TaskChild" onClick={()=>{
             setChildModalWindow(true)
-            // closeParentWindow()
             }}>
             <div className="TaskChild__Close">
                 <button onClick={(e)=>{

@@ -2,7 +2,6 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { type } from '@testing-library/user-event/dist/type'
 import todoSlice from './createSlice'
 import todoSliceDask  from './CreateSliseDask'
-import todoSliceCalendar  from './CreateSliseCalendar'
 
 
 import { 
@@ -22,12 +21,11 @@ import storage from 'redux-persist/lib/storage'
 const persistConfig = {
    key: 'primary',
    storage,
-   whitelist: ['dasks','todos', 'events']
+   whitelist: ['dasks','todos']
  }
 const rootReduser = combineReducers({
       todos: todoSlice,
       dasks: todoSliceDask,
-      events: todoSliceCalendar
 
 }   
 )

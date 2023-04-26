@@ -1,14 +1,8 @@
-import { AnyAction, createSlice } from '@reduxjs/toolkit'
+import {  createSlice } from '@reduxjs/toolkit'
 interface ToDoState {
     todos: ToDoType []
-    // stateModalWindow: boolean
 }
-// interface DasksType {
-//     title: string,
-//     id: number,
-//     item: ToDoType[],
-//     order: number
-// }
+
 export interface ToDoType {
     title: string,
     id: number
@@ -99,7 +93,12 @@ export const todoSlice = createSlice({
              state.todos
             .map(item=>item.childItem?.forEach((x)=>{
                     if(x.id===payload.list.id){
-                        x.history?.push(`${x.resume} => ${payload.item}`)
+                        if(x.resume){
+                          x.history?.push(`${x.resume} => ${payload.item}`)  
+                        }else{
+                            x.history?.push(`"" => ${payload.item}`)  
+                        }
+                        
                        return x.resume = payload.item
                     }else{
                         elem(x)
