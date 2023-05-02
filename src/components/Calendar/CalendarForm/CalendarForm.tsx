@@ -19,6 +19,7 @@ export interface EventFormType{
 const CalendarForm =({newEvent, addNewEvent, stateForm, closeForm}:CalendarFormType)=>{
     const  [stateEvent, setEvent]:any = useState({title: '', start: null, end: null})
     const calendarFormHandler =()=>{
+        console.log(stateEvent.start)
         newEvent = {
             id: new Date().getTime(),
             title: stateEvent.title,

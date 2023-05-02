@@ -5,6 +5,7 @@ import { DatePicker, TimePicker, DateTimePicker } from '@mui/x-date-pickers'
 import { useState, useEffect } from 'react'
 import moment from 'moment'
 import { EventFormType } from '../CalendarForm/CalendarForm'
+import dayjs from 'dayjs';
 
 interface CalendarTaskType{
     item: EventFormType,
@@ -18,13 +19,25 @@ interface CalendarTaskType{
 
 const CalendarTask =({item, newEvent, addNewEvent, stateForm, closeForm, deleteEvent, delEvent}:CalendarTaskType)=>{
     // const  [stateForm, setForm]:any = useState('')
-    console.log(item)
-    const  [stateEvent, setEvent]:any = useState({title: item.title, start: item.start, end: item.end})
+    // console.log(item.start)
+    // const  [stateEvent, setEvent]:any = useState({title: item.title, start: item.start, end: item.end})
     const  [stateTitle, setTitle] = useState<boolean>(true)
     const  [stateItemTitle, setItemTitle] = useState<string>(item.title)
-    console.log(stateItemTitle)
+    const  [stateStart, setStart]:any = useState(item.start)
+    const  [stateEnd, setEnd]:any = useState(item.end)
+       console.log(item)
+    useEffect(()=>{
+        if(item.start!==undefined){
+          setStart(`${item.start.getFullYear()}-${(item.start.getMonth()+1).lenght>1?item.start.getMonth()+1:"0"+(item.start.getMonth()+1)}-${item.start.getDate()}T${item.start.getMinutes()?item.start.getMinutes():"00"}:${item.start.getSeconds()?item.start.getSeconds():"00"}`)   
+        }
+        if(item.end!==undefined){
+            setEnd(`${item.end.getFullYear()}-${(item.end.getMonth()+1).lenght>1?item.end.getMonth()+1:"0"+(item.end.getMonth()+1)}-${item.end.getDate()}T${item.end.getMinutes()?item.end.getMinutes():"00"}:${item.end.getSeconds()?item.end.getSeconds():"00"}`) 
+        }
+        // console.log(stateStart)
+    },[item])
     useEffect(()=>{
         setItemTitle(item.title)
+        
     },[item])
     const calendarFormHandler =()=>{
         newEvent = {
@@ -36,10 +49,10 @@ const CalendarTask =({item, newEvent, addNewEvent, stateForm, closeForm, deleteE
         }
         addNewEvent(newEvent)
         setTitle(false)
-        setEvent({title: '', start: null, end: null})
+        // setEvent({title: '', start: null, end: null})
 
     }
-
+    // onChange={(newValue:any) => setEvent({...stateEvent, end: newValue})}
     const deleteEventHandler=()=>{
         delEvent = item
         deleteEvent(delEvent)
@@ -64,22 +77,28 @@ const CalendarTask =({item, newEvent, addNewEvent, stateForm, closeForm, deleteE
                 </FlexContainer>
                
                 {/* )}    */}
-                {/* <FlexContainer gap='10px' width='100%' justify='space-between'>
+                <FlexContainer gap='10px' width='100%' justify='space-between'>
 
                     <DateTimePicker
-                    label="Event start"
-                    value={stateEvent.end}
-                    onChange={(newValue:any) => setEvent({...stateEvent, start: newValue})}
+                    // type='datetime-local'
+                    // label="Event start"
+                    // '2023-04-29T00:06'
+                    value={dayjs(stateStart)}
+                    onChange={(e) =>{ 
+                        setStart(e)
+                        console.log(stateStart)
+                        console.log(typeof(stateStart))
+                    }}
                     />
                 </FlexContainer>
                 <FlexContainer gap='10px' width='100%' justify='space-between'>
 
                     <DateTimePicker
                     label="Event end"
-                    value={stateEvent.end}
-                    onChange={(newValue:any) => setEvent({...stateEvent, end: newValue})}
+                    value={dayjs(stateEnd)}
+                    // onChange={(newValue:any) => setEvent({...stateEvent, end: newValue})}
                     />
-                </FlexContainer> */}
+                </FlexContainer>
                     <FlexContainer width='100%' gap='30px' >
                     <button onClick={calendarFormHandler} className='BtnAdd' color="secondary">Save Task</button> 
                     <button onClick={closeForm} className='BtnAdd' color="secondary">Close</button>  

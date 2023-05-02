@@ -84,8 +84,9 @@ const CalendarWindow=()=>{
 
                 setItem(e)
                 setTask(true)
-                console.log(stateItem)
-                console.log(e)
+                // console.log("stateItem")
+                // console.log(stateItem)
+                // console.log(e)
               
             }}
             onEventDrop={onEventDrop}

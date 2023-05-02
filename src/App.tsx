@@ -69,7 +69,7 @@ const addNewTask = (taskItem:any) =>{
             <NavBlock list={navList}/>
               {/* <FlexContainer padding = {'40px 0'} direction = {'row'}  gap = {'10px'}> */}
                 <Routes>
-                  <Route path='/' element={
+                  <Route path='/main' element={
                   <ListItem addList={()=>{setStateFormDask(true)}}  list={dasks} addTask={()=>setStateFormTask(true)} >
                   <TasksItem />
                 </ListItem>}/>

@@ -45,13 +45,11 @@ export const todoSliceDask = createSlice({
         element.map((item)=>item.item.push(payload))
         },
         deleteDask(state, {payload, type}){
-            console.log(payload.todos)
             if(payload.todos!==-1){
                 alert("В доске есть задачи, невозможно удалить доску")
                 
             }else{
                state.dasks = state.dasks.filter(item => item.id !== payload.item.id) 
-               console.log("delete")
             }    
         }
 
