@@ -8,13 +8,13 @@ import './style/style.scss'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { DndProvider } from 'react-dnd'
 import { PersistGate } from 'redux-persist/integration/react'
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, HashRouter } from 'react-router-dom';
 
 // const store = setupStore()
 const root = ReactDOM.createRoot(document.getElementById('root')as HTMLElement);
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <DndProvider backend={HTML5Backend}>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
@@ -22,7 +22,7 @@ root.render(
           </PersistGate> 
       </Provider>
       </DndProvider>
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>
 );
 
