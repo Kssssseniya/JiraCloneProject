@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/JiraCloneProject/static/css/main.7b307433.css",
+    "main.js": "/JiraCloneProject/static/js/main.e6605da3.js",
+    "static/media/Jira_software-Logo.png": "/JiraCloneProject/static/media/Jira_software-Logo.2050fb58a6b62712dfce.png",
+    "index.html": "/JiraCloneProject/index.html",
+    "main.7b307433.css.map": "/JiraCloneProject/static/css/main.7b307433.css.map",
+    "main.e6605da3.js.map": "/JiraCloneProject/static/js/main.e6605da3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7b307433.css",
+    "static/js/main.e6605da3.js"
+  ]
+}
